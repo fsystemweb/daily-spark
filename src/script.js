@@ -62,4 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navigator.share ? navigator.share(shareData) : alert('Sharing not supported');
     });
+
 });
