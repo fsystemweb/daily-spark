@@ -1,0 +1,17 @@
+# Parcel build artifacts
+dist/
+
+# Node.js-specific files
+node_modules/
+package-lock.json
+
+# Editor-specific files
+.DS_Store
+*.swp
+*.bak
+*.tmp
+*.log
+
+# IDE-specific files
+.idea/
+.vscode/
