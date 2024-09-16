@@ -1,25 +1,40 @@
 import quotes from './quotes.json'; // Import the JSON file
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const phraseContainer = document.getElementById('phraseContainer');
     const phraseText = document.getElementById('phraseText');
     const phraseAuthor = document.getElementById('phraseAuthor');
     const generateButton = document.getElementById('generateButton');
     const shareButton = document.getElementById('shareButton');
+    const title = document.getElementById('title');
+
 
     // Hide the phrase container initially
     phraseContainer.classList.remove('show');
     shareButton.classList.add('hidden');
 
+
+    function getDayOfYear() {
+        const date = new Date();
+        return Math.floor(date.getTime() / 86400000);
+    }
+
     const getPhraseIndexForToday = () => {
-        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
-        const dateNumber = parseInt(today.replace(/-/g, ''), 10); // Convert date to integer
-        return dateNumber % quotes.length; // Generate index based on date
+        let dayOfYear = getDayOfYear() - 1;
+        dayOfYear = Math.max(1, Math.min(366, dayOfYear));
+
+        const index = (dayOfYear - 1) % quotes.length + 1;
+        return index;
     };
+
 
     const displayPhrase = () => {
         generateButton.hidden = true;
+        title.hidden = true;
         const index = getPhraseIndexForToday();
+
         const phrase = quotes[index];
 
         if (phrase) {
