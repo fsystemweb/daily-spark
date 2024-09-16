@@ -1,5 +1,6 @@
 # Parcel build artifacts
 dist/
+.parcel-cache
 
 # Node.js-specific files
 node_modules/
