@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const displayPhrase = () => {
+        generateButton.hidden = true;
         const index = getPhraseIndexForToday();
         const phrase = quotes[index];
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const { text, author } = phrase;
             phraseText.textContent = text;
             phraseAuthor.textContent = `— ${author}`;
-            
+
             phraseContainer.classList.add('show');
             shareButton.classList.remove('hidden');
         } else {
