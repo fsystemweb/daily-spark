@@ -1,5 +1,25 @@
 import quotes from './quotes.json';
 
+const getDayOfYear = (date) => {
+  const start = new Date(date.getFullYear(), 0, 0);
+  return Math.floor((date - start) / (1000 * 60 * 60 * 24));
+}
+
+const getPhraseIndexForToday = (date) => {
+  let dayOfYear = getDayOfYear(date) - 1;
+  dayOfYear = Math.max(0, Math.min(365, dayOfYear));
+
+  const maxNumber = quotes.length;
+
+
+  if(dayOfYear <= quotes.length){
+    return dayOfYear;
+  }
+
+  const index = dayOfYear % quotes.length;
+  return index - 1;
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const phraseContainer = document.getElementById('phraseContainer');
   const phraseText = document.getElementById('phraseText');
@@ -10,22 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   phraseContainer.classList.remove('show');
 
-  function getDayOfYear() {
-    const date = new Date();
-    return Math.floor(date.getTime() / 86400000);
-  }
-
-  const getPhraseIndexForToday = () => {
-    let dayOfYear = getDayOfYear() - 1;
-    dayOfYear = Math.max(1, Math.min(366, dayOfYear));
-    const index = (dayOfYear - 1) % quotes.length + 1;
-    return index;
-  };
-
   const displayPhrase = () => {
     generateButton.hidden = true;
     title.hidden = true;
-    const index = getPhraseIndexForToday();
+    const index = getPhraseIndexForToday(new Date());
     const phrase = quotes[index];
 
     if (phrase) {
@@ -54,3 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.share ? navigator.share(shareData) : alert('Sharing not supported');
   });
 });
+
+export {getDayOfYear, getPhraseIndexForToday}
