@@ -7,8 +7,8 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Facundo Ezequiel Diaz Cappella",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",
